@@ -1,0 +1,73 @@
+﻿---
+import {
+  Card,
+  CardHeader,
+
+  CardDescription,
+  CardContent,
+
+
+} from "@/components/ui/card";
+
+import { Icon } from "astro-icon/components";
+---
+
+<section id="servicos" class="page-shell section-space services-section" aria-labelledby="services-title">
+  <p class="eyebrow">Soluções para seu negócio</p>
+  <h2 id="services-title" class="section-title mb-3">Como posso ajudar</h2>
+  <span class="text-gray-500"
+    >Soluções sob medida para seu negócio, com foco em clareza, performance e
+    boa experiência.</span
+  >
+
+  <div class="services-grid grid grid-cols-1 mt-8 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <Card>
+      <CardHeader>
+        <Icon name="mdi:dock-window" class="text-4xl" />
+      </CardHeader>
+      <CardContent>
+        <h3 class="service-title">Landing Pages</h3>
+        <CardDescription
+          >Páginas objetivas e estratégicas para apresentar seu serviço, gerar
+          interesse e transformar visitantes em clientes.</CardDescription
+        >
+      </CardContent>
+    </Card>
+
+    <Card>
+      <CardHeader>
+        <Icon name="mdi:web" class="text-4xl" />
+      </CardHeader>
+      <CardContent>
+        <h3 class="service-title">Sites Institucionais</h3>
+        <CardDescription
+          >Sites completos para fortalecer a presença da sua marca, com conteúdo organizado, design limpo e fácil navegação.</CardDescription
+        >
+      </CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <Icon name="mdi:cart" class="text-4xl" />
+      </CardHeader>
+      <CardContent>
+        <h3 class="service-title">eCommerce</h3>
+        <CardDescription
+          >Uma loja online completa para impulsionar sua marca, design limpo, fácil navegação e com os melhores métodos de pagamento e entrega para seu cliente.</CardDescription
+        >
+      </CardContent>
+    </Card>
+
+    <Card>
+      <CardHeader>
+        <Icon name="mdi:mouse" class="text-4xl" />
+      </CardHeader>
+      <CardContent>
+        <h3 class="service-title">Softwares Personalizados (SaaS)</h3>
+        <CardDescription
+          >Aplicações completas para o segmento do seu negócio, desenvolvidos para a necessidade de cada cliente, trazendo segurança e velocidade na usabilidade.</CardDescription
+        >
+      </CardContent>
+    </Card>
+  </div>
+</section>
+

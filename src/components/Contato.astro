@@ -1,0 +1,14 @@
+﻿---
+import { Icon } from "astro-icon/components";
+import { WHATSAPP_URL } from "@/lib/contact";
+---
+<section id="sobre" class="page-shell section-space about-section" aria-labelledby="about-title">
+  <div><p class="eyebrow">Por trás do código</p><h2 id="about-title" class="section-title">Prazer, Gabriel.</h2></div>
+  <div class="about-copy"><p>Sou Gabriel, responsável pela <strong>GM codeworks.</strong></p><p>Crio sites com atenção ao visual, à navegação e aos detalhes. Uma presença digital feita com cuidado, do primeiro contato à publicação.</p></div>
+</section>
+<section id="contato" class="page-shell contact-section" aria-labelledby="contact-title">
+  <div class="contact-panel">
+    <div><p class="eyebrow">Vamos conversar</p><h2 id="contact-title">Vamos tirar seu site do papel?</h2><p>Me conte sobre o seu projeto e receba um orçamento sem compromisso.</p></div>
+    <a class="action" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"><Icon name="mdi:whatsapp" class="size-5" /> Solicitar orçamento</a>
+  </div>
+</section>

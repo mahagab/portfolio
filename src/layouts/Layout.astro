@@ -1,23 +1,24 @@
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 	<head>
+    <!-- bejamas:astro-fonts:start -->
+<Font cssVariable="--site-font" />
+<!-- bejamas:astro-fonts:end -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>GM Codeworks</title>
+    <meta name="description" content="Landing pages e sites institucionais com design claro, navegação simples e atenção aos detalhes. Conheça os projetos da GM codeworks." />
 	</head>
 	<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

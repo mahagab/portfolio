@@ -1,5 +1,29 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from "astro/config";
+import tailwindcss from '@tailwindcss/vite';
 
-// https://astro.build/config
-export default defineConfig({});
+import icon from "astro-icon";
+
+// bejamas:astro-fonts:start
+/** @type {NonNullable<import("astro").AstroUserConfig["fonts"]>} */
+const BEJAMAS_ASTRO_FONTS = [
+  {
+    provider: fontProviders.google(),
+    name: "Inter",
+    cssVariable: "--site-font",
+    subsets: ["latin"],
+  },
+];
+// bejamas:astro-fonts:end
+
+export default defineConfig({
+  fonts: BEJAMAS_ASTRO_FONTS,
+
+  // Adicione esta linha:
+  scopedStyleStrategy: 'class',
+
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  integrations: [icon()]
+});

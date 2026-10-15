@@ -1,0 +1,57 @@
+---
+const etapas = [
+  {
+    numero: "01",
+    titulo: "Conversa",
+    descricao:
+      "Entendo suas necessidades, objetivos e referências para alinharmos o projeto.",
+  },
+  {
+    numero: "02",
+    titulo: "Desenvolvimento",
+    descricao:
+      "Transformo as ideias em um site com design limpo, responsivo e focado no seu público.",
+  },
+  {
+    numero: "03",
+    titulo: "Publicação",
+    descricao:
+      "Após sua aprovação, coloco o site no ar e faço os ajustes finais.",
+  },
+];
+---
+
+<section id="processo" class="page-shell section-space process-section" aria-labelledby="process-title">
+  <p class="eyebrow">Simples do começo ao fim</p>
+  <h2 id="process-title" class="section-title">
+    Do primeiro contato ao site no ar
+  </h2>
+
+  <p class="mt-3 text-gray-500">
+    Um processo simples e transparente, para você acompanhar cada etapa.
+  </p>
+
+  <ol class="process-grid mt-8">
+    {etapas.map((etapa, index) => (
+      <li class="flex gap-4">
+        <div class="flex w-11 shrink-0 flex-col items-center">
+          <span
+            class="flex size-11 items-center justify-center rounded-full
+                   bg-[#D9E5DF] text-lg font-bold text-[#245748]"
+          >
+            {etapa.numero}
+          </span>
+
+          {index < etapas.length - 1 && (
+            <div class="my-2 w-px flex-1 bg-gray-300" />
+          )}
+        </div>
+
+        <div class={index < etapas.length - 1 ? "pb-8" : ""}>
+          <h3 class="pt-1 text-lg font-bold">{etapa.titulo}</h3>
+          <p class="mt-1 text-gray-500">{etapa.descricao}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>    
