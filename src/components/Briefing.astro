@@ -1,0 +1,91 @@
+﻿---
+import { SITE_TYPES, MATERIALS, DEADLINES, BUDGETS } from "@/lib/briefing";
+import { briefingVisible, briefingEndpoint } from "@/lib/briefing-config";
+import { WHATSAPP_URL } from "@/lib/contact";
+---
+{briefingVisible && (
+  <section id="briefing" class="page-shell section-space briefing-section" aria-labelledby="briefing-title">
+    <div class="briefing-intro">
+      <p class="eyebrow">No seu tempo</p>
+      <h2 id="briefing-title" class="section-title">Conte sobre o seu projeto.</h2>
+      <p>Prefere explicar primeiro e conversar depois? Envie os detalhes abaixo. Vou analisar suas respostas e retornar por e-mail em até um dia útil.</p>
+      <p class="briefing-note">Leva cerca de 3 minutos. O prazo do projeto será combinado após a análise.</p>
+    </div>
+    <div class="briefing-panel">
+      <form id="project-briefing" data-endpoint={briefingEndpoint} aria-describedby="briefing-instructions">
+        <p id="briefing-instructions" class="briefing-note">Todos os campos são obrigatórios, exceto empresa. Se ainda não souber algo, escolha a opção correspondente.</p>
+        <div id="briefing-errors" class="briefing-feedback briefing-error" role="alert" tabindex="-1" hidden></div>
+        <noscript><p class="briefing-feedback">Ative o JavaScript para enviar este formulário ou use o <a href={WHATSAPP_URL} data-whatsapp="briefing">WhatsApp</a>.</p></noscript>
+        <fieldset id="briefing-fields" disabled>
+          <legend class="sr-only">Detalhes do projeto</legend>
+          <div class="briefing-grid">
+            <div class="briefing-field">
+              <label for="briefing-name">Seu nome</label>
+              <input id="briefing-name" name="name" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="error-name" />
+              <p id="error-name" class="briefing-field-error" hidden></p>
+            </div>
+            <div class="briefing-field">
+              <label for="briefing-company">Empresa <span class="briefing-optional">(opcional)</span></label>
+              <input id="briefing-company" name="company" autocomplete="organization" maxlength="120" aria-describedby="error-company" />
+              <p id="error-company" class="briefing-field-error" hidden></p>
+            </div>
+            <div class="briefing-field briefing-wide">
+              <label for="briefing-email">E-mail para retorno</label>
+              <input id="briefing-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="error-email" />
+              <p id="error-email" class="briefing-field-error" hidden></p>
+            </div>
+            <div class="briefing-field briefing-wide">
+              <label for="briefing-site_type">Que tipo de site você precisa?</label>
+              <select id="briefing-site_type" name="site_type" required aria-describedby="error-site_type">
+                <option value="" disabled selected>Selecione uma opção</option>
+                {SITE_TYPES.map(option => <option value={option.value}>{option.label}</option>)}
+              </select>
+              <p id="error-site_type" class="briefing-field-error" hidden></p>
+            </div>
+            <div class="briefing-field briefing-wide">
+              <label for="briefing-objective">Qual é o objetivo principal?</label>
+              <p id="objective-help" class="briefing-note">Conte o que sua empresa faz, quem quer alcançar e o que o visitante deve fazer. Se já souber, mencione as páginas ou seções necessárias.</p>
+              <textarea id="briefing-objective" name="objective" required minlength="20" maxlength="1500" rows="5" aria-describedby="objective-help error-objective" placeholder="Ex.: apresentar meus serviços e receber pedidos de orçamento. Preciso de início, sobre, serviços e contato."></textarea>
+              <p id="error-objective" class="briefing-field-error" hidden></p>
+            </div>
+            <fieldset class="briefing-field briefing-wide briefing-materials" aria-describedby="error-materials">
+              <legend>Quais materiais você já tem?</legend>
+              <div class="briefing-options">
+                {MATERIALS.map(option => <label><input type="checkbox" name="materials" value={option.value} />{option.label}</label>)}
+              </div>
+              <p id="error-materials" class="briefing-field-error" hidden></p>
+            </fieldset>
+            <div class="briefing-field">
+              <label for="briefing-deadline">Prazo desejado</label>
+              <select id="briefing-deadline" name="deadline" required aria-describedby="error-deadline">
+                <option value="" disabled selected>Selecione uma opção</option>
+                {DEADLINES.map(option => <option value={option.value}>{option.label}</option>)}
+              </select>
+              <p id="error-deadline" class="briefing-field-error" hidden></p>
+            </div>
+            <div class="briefing-field">
+              <label for="briefing-budget">Faixa de investimento</label>
+              <select id="briefing-budget" name="budget" required aria-describedby="error-budget">
+                <option value="" disabled selected>Selecione uma opção</option>
+                {BUDGETS.map(option => <option value={option.value}>{option.label}</option>)}
+              </select>
+              <p id="error-budget" class="briefing-field-error" hidden></p>
+            </div>
+          </div>
+          <p class="briefing-note briefing-privacy">Usarei seus dados apenas para avaliar o projeto e entrar em contato sobre a proposta. Não inclua senhas ou dados sensíveis nas respostas.</p>
+          <button class="action" type="submit" id="briefing-submit">Enviar detalhes do projeto</button>
+          <p id="briefing-progress" class="briefing-note" role="status" hidden>Enviando seu briefing…</p>
+        </fieldset>
+      </form>
+      <div id="briefing-success" class="briefing-success" role="status" tabindex="-1" hidden>
+        <span class="briefing-success-mark" aria-hidden="true">✓</span>
+        <h3>Briefing recebido!</h3>
+        <p>Vou analisar suas respostas e retornar pelo e-mail informado em até um dia útil.</p>
+        <p>Você não precisa iniciar uma conversa no WhatsApp agora.</p>
+      </div>
+    </div>
+  </section>
+)}
+<script>
+  import "../scripts/briefing";
+</script>

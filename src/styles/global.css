@@ -267,3 +267,45 @@ a:focus-visible, button:focus-visible { outline: 3px solid #128c7e; outline-offs
   .header-inner .brand-mark { font-size: 1.4rem; }
   .header-inner .action-small { font-size: .65rem; padding-inline: .6rem; gap: .35rem; }
 }
+
+/* Briefing: leitura e preenchimento confortáveis no celular e no desktop. */
+.contact-options { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; flex-shrink: 0; max-width: 100%; }
+.contact-options .text-link { max-width: 18rem; line-height: 1.6; }
+.briefing-secondary { margin-top: 1.25rem; line-height: 1.6; }
+.briefing-section { display: grid; gap: 2rem; border-top: 1px solid #e1e8dd; }
+.briefing-intro > p:not(.eyebrow) { margin-top: 1rem; color: var(--muted-ink); line-height: 1.8; }
+.briefing-panel { min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid #dce4da; border-radius: 1rem; background: #fff; }
+.briefing-note { color: var(--muted-ink); font-size: .8rem; line-height: 1.7; }
+.briefing-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.briefing-field { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.briefing-field > label, .briefing-field > legend { font-size: .875rem; font-weight: 650; color: var(--ink); }
+.briefing-optional { font-weight: 400; color: var(--muted-ink); }
+.briefing-field input:not([type=checkbox]), .briefing-field select, .briefing-field textarea { width: 100%; min-height: 46px; padding: .75rem; border: 1px solid #acbdb3; border-radius: .5rem; background: #fcfdfb; color: var(--ink); font: inherit; font-size: 1rem; }
+.briefing-field textarea { resize: vertical; }
+.briefing-field input::placeholder, .briefing-field textarea::placeholder { color: #65746b; opacity: 1; }
+.briefing-field :is(input, select, textarea):focus-visible { outline: 3px solid #128c7e; outline-offset: 3px; }
+.briefing-field [aria-invalid=true] { border-color: #a93226 !important; }
+.briefing-options { display: grid; gap: .35rem; margin-top: .75rem; }
+.briefing-options label { display: flex; align-items: center; gap: .7rem; min-height: 44px; padding: .4rem .6rem; border-radius: .4rem; font-size: .875rem; cursor: pointer; }
+.briefing-options label:has(input:checked) { background: #edf3e9; }
+.briefing-options input { width: 1.1rem; height: 1.1rem; flex-shrink: 0; accent-color: #075e54; }
+.briefing-privacy { margin-block: 1.5rem; }
+.briefing-field-error { font-size: .8rem; color: #a93226; line-height: 1.6; }
+.briefing-feedback { margin-top: 1.25rem; padding: 1rem; border-radius: .5rem; font-size: .875rem; line-height: 1.7; }
+.briefing-error { color: #86251d; background: #fff4f1; border: 1px solid #e9bcb5; }
+.briefing-error ul { padding-left: 1rem; list-style: disc; }
+.briefing-feedback:focus, .briefing-success:focus { outline: 3px solid #128c7e; outline-offset: 4px; }
+.briefing-panel fieldset:disabled { opacity: .65; }
+.briefing-panel button:disabled, .briefing-panel fieldset:disabled button { cursor: wait; transform: none; }
+.briefing-success-mark { display: inline-flex; justify-content: center; align-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: #e4eddf; color: #075e54; font-size: 1.5rem; }
+.briefing-success h3 { margin-top: 1rem; font-size: 1.5rem; font-weight: 700; }
+.briefing-success p { margin-top: .75rem; color: var(--muted-ink); line-height: 1.8; }
+.briefing-panel [hidden] { display: none !important; }
+#briefing-progress { margin-top: 1rem; }
+@media (min-width: 640px) {
+  .briefing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .briefing-wide { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) {
+  .briefing-section { grid-template-columns: .8fr 1.2fr; align-items: start; gap: 4rem; }
+}

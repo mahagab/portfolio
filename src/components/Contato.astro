@@ -1,6 +1,7 @@
 ﻿---
 import { Icon } from "astro-icon/components";
 import { WHATSAPP_URL } from "@/lib/contact";
+import { briefingVisible } from "@/lib/briefing-config";
 ---
 <section id="sobre" class="page-shell section-space about-section" aria-labelledby="about-title">
   <div><p class="eyebrow">Por trás do código</p><h2 id="about-title" class="section-title">Prazer, Gabriel.</h2></div>
@@ -9,6 +10,11 @@ import { WHATSAPP_URL } from "@/lib/contact";
 <section id="contato" class="page-shell contact-section" aria-labelledby="contact-title">
   <div class="contact-panel">
     <div><p class="eyebrow">Vamos conversar</p><h2 id="contact-title">Vamos tirar seu site do papel?</h2><p>Me conte sobre o seu projeto e receba um orçamento sem compromisso.</p></div>
-    <a class="action" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"><Icon name="mdi:whatsapp" class="size-5" /> Solicitar orçamento</a>
+    <div class="contact-options">
+    <a class="action" href={WHATSAPP_URL} data-whatsapp="contato" target="_blank" rel="noopener noreferrer"><Icon name="mdi:whatsapp" class="size-5" /> Solicitar orçamento</a>
+    {briefingVisible && <a href="#briefing" class="text-link">Prefiro enviar os detalhes do projeto</a>}
+    </div>
   </div>
 </section>
+
+

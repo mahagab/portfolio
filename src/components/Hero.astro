@@ -1,16 +1,18 @@
 ﻿---
 import { Icon } from "astro-icon/components";
 import { WHATSAPP_URL } from "@/lib/contact";
+import { briefingVisible } from "@/lib/briefing-config";
 ---
 <section id="inicio" class="hero page-shell" aria-labelledby="hero-title">
   <div class="hero-copy entrance">
     <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Landing pages e sites institucionais</p>
-    <h1 id="hero-title">Seu negócio merece um site <span>à altura.</span></h1>
-    <p class="hero-description">Design claro, navegação simples e uma presença digital profissional para apresentar seu negócio e facilitar o próximo contato.</p>
+    <h1 id="hero-title">Landing pages e sites institucionais <span>para seu negócio.</span></h1>
+    <p class="hero-description">Crio landing pages para apresentar sua oferta e sites institucionais para fortalecer sua marca. Design claro, navegação simples e contato fácil pelo WhatsApp.</p>
     <div class="hero-actions">
-      <a class="action" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"><Icon name="mdi:whatsapp" class="size-5" /> Solicitar orçamento</a>
+      <a class="action" href={WHATSAPP_URL} data-whatsapp="hero" target="_blank" rel="noopener noreferrer"><Icon name="mdi:whatsapp" class="size-5" /> Solicitar orçamento</a>
       <a class="text-link" href="#projetos">Conhecer projetos <Icon name="mdi:arrow-right" class="size-5" /></a>
     </div>
+    {briefingVisible && <a href="#briefing" class="text-link briefing-secondary">Prefiro enviar os detalhes do projeto</a>}
     <p class="hero-note">Feito com cuidado. Pensado para seus clientes.</p>
   </div>
   <div class="hero-art entrance" aria-hidden="true">
@@ -28,3 +30,5 @@ import { WHATSAPP_URL } from "@/lib/contact";
     <div class="preview-badge"><Icon name="mdi:check-circle" class="size-5" /> Cada detalhe faz diferença.</div>
   </div>
 </section>
+
+

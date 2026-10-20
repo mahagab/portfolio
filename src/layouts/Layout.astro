@@ -1,6 +1,7 @@
----
+﻿---
 import "../styles/global.css";
 import { Font } from "astro:assets";
+import Analytics from "../components/Analytics.astro";
 ---
 
 <!doctype html>
@@ -17,9 +18,14 @@ import { Font } from "astro:assets";
 		<meta name="generator" content={Astro.generator} />
 		<title>GM Codeworks</title>
     <meta name="description" content="Landing pages e sites institucionais com design claro, navegação simples e atenção aos detalhes. Conheça os projetos da GM codeworks." />
-	</head>
+	  <Analytics />
+</head>
 	<body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 		<slot />
-	</body>
+	  <script>
+    import "../scripts/contact";
+  </script>
+</body>
 </html>
+

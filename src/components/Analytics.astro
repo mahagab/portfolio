@@ -1,0 +1,24 @@
+﻿---
+const rawMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+// O ID do Google Ads é público. Uma variável vazia permite desativar a tag.
+const rawAdsId = (import.meta.env.PUBLIC_GOOGLE_ADS_ID ?? "AW-18526877385").trim();
+const measurementId = rawMeasurementId && /^G-[A-Z0-9]+$/.test(rawMeasurementId) ? rawMeasurementId : null;
+const adsId = /^AW-[0-9]+$/.test(rawAdsId) ? rawAdsId : null;
+const loaderId = measurementId ?? adsId;
+---
+{loaderId && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${loaderId}`}></script>
+    <script is:inline define:vars={{ measurementId, adsId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      if (measurementId) {
+        window.gtag("config", measurementId, { allow_ad_personalization_signals: false });
+      }
+      if (adsId) {
+        window.gtag("config", adsId);
+      }
+    </script>
+  </>
+)}
