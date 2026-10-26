@@ -21,7 +21,7 @@ A última origem identificada é mantida por até 30 minutos na mesma aba, usand
 
 A tag `AW-18526877385` está configurada no componente `Analytics.astro`, carregado no head do layout. O gtag.js é carregado uma única vez, mesmo se o GA4 também for configurado. Para substituir o ID, configure `PUBLIC_GOOGLE_ADS_ID` no ambiente de hospedagem; um valor vazio desativa a tag do Ads. É necessário refazer o build e publicar para aplicar qualquer mudança.
 
-Essa é a tag base da conta, não uma ação de conversão. O evento `whatsapp_click` existente não é automaticamente uma conversão do Google Ads. Para medir esse clique como conversão, crie uma ação específica no Google Ads e forneça o snippet do evento com o destino completo `AW-18526877385/ROTULO_DA_CONVERSAO`. Não há rótulo configurado e não registramos visita à página como conversão.
+A ação Clique no WhatsApp usa o destino `AW-18526877385/37bWCMmcmKUdEMntpoJF`. O evento `conversion` é enviado nos cliques dos links `data-whatsapp` (menu, hero, contato e alternativa do briefing, quando disponível), com `value: 1.0` e `currency: BRL`, conforme o snippet fornecido. Esse valor é simbólico e não representa faturamento. O evento de diagnóstico `whatsapp_click` continua separado. Não há conversão automática ao carregar a página. Se PUBLIC_GOOGLE_ADS_ID for desativado ou trocado para outra conta, essa conversão deixa de ser enviada para a conta anterior.
 
 A configuração do GA4 continua separada, com `PUBLIC_GA_MEASUREMENT_ID=G-...`. Após publicar, valide a tag base no domínio com o Tag Assistant. O build local confirma a inclusão do código, mas não confirma o recebimento no painel do Google Ads.
 
@@ -40,7 +40,7 @@ A medição está preparada, mas fica DESATIVADA sem um ID real.
 
 O evento `whatsapp_click` registra um clique, não confirma que a conversa foi iniciada, que a mensagem foi enviada ou que houve uma venda. `contact_location` distingue menu, hero e contato. Não enviamos o telefone nem a mensagem do WhatsApp nos parâmetros do evento. Bloqueadores podem impedir a medição sem impedir o contato.
 
-Não há tag de conversão do Google Ads configurada. A configuração da propriedade e a validação real do recebimento de eventos ainda são necessárias antes de usar os números como base de campanha. Antes de ativar a coleta, alinhe a configuração de privacidade/consentimento do site à sua operação.
+A conversão de clique do Google Ads está configurada com o rótulo `37bWCMmcmKUdEMntpoJF`; a coleta no domínio deve ser validada após publicar. A configuração da propriedade e a validação real do recebimento de eventos ainda são necessárias antes de usar os números como base de campanha. Antes de ativar a coleta, alinhe a configuração de privacidade/consentimento do site à sua operação.
 
 Referências oficiais:
 - https://developers.google.com/tag-platform/gtagjs
@@ -80,3 +80,8 @@ Um resumo geral da impressão do perfil.
 Uma lista de melhorias práticas e prioritárias.
 Uma sugestão de título profissional otimizado, se necessário.
 Uma sugestão de mensagem para o campo “Sobre”, que possa atrair recrutadores com clareza e impacto.
+
+## Validar a conversão de WhatsApp
+
+Depois do deploy, conecte o Tag Assistant, clique uma vez em um botão do WhatsApp e confira um evento conversion com o destino AW-18526877385/37bWCMmcmKUdEMntpoJF. Apenas abrir ou recarregar a página não deve disparar essa conversão. O envio mede um clique, não o envio de uma mensagem nem uma venda. Evite instalar o mesmo snippet por outro gerenciador de tags. O teste local simula as chamadas e não envia eventos ao Google.
+

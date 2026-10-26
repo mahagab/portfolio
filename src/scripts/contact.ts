@@ -3,6 +3,8 @@
 type AnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
 };
+const googleAdsId = (import.meta.env.PUBLIC_GOOGLE_ADS_ID ?? "AW-18526877385").trim();
+const whatsAppConversion = "AW-18526877385/37bWCMmcmKUdEMntpoJF";
 const storageKey = "gm-contact-attribution-v1";
 const sessionDuration = 30 * 60 * 1000;
 const sources = new Set(["google", "instagram", "facebook", "meta", "linkedin", "email", "referral", "other", "direct"]);
@@ -36,9 +38,21 @@ function trackClick(event: MouseEvent) {
   // Medir o clique, sem enviar o telefone ou a mensagem para o Analytics.
   try { (window as AnalyticsWindow).gtag?.("event", "whatsapp_click", params); }
   catch { /* Uma falha de medição nunca deve impedir a abertura do WhatsApp. */ }
+  // A conversão é acionada somente neste clique, nunca no carregamento da página.
+  // Se a conta do Ads for desativada ou substituída, não enviar para a conta antiga.
+  if (googleAdsId === "AW-18526877385") {
+    try {
+      (window as AnalyticsWindow).gtag?.("event", "conversion", {
+        send_to: whatsAppConversion,
+        value: 1.0,
+        currency: "BRL",
+      });
+    } catch { /* O WhatsApp continua abrindo mesmo com bloqueio do rastreamento. */ }
+  }
 }
 
 prepareLinks();
 document.addEventListener("astro:page-load", prepareLinks);
 document.addEventListener("click", trackClick);
 document.addEventListener("auxclick", trackClick);
+
